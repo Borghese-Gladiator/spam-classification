@@ -32,8 +32,7 @@ def remove_stop_words(normalized_words):
 ## Apply Tokenization, Normalization, Cleaning
 def apply_preprocess_all(text):
     # returns string (NOT list)
-    print(text)
     tokenized = tokenize_into_words(text)
     normalized = lemmatization(tokenized)
     cleaned_words = remove_stop_words(normalized)
-    return cleaned_words.join(' ')
+    return " ".join(cleaned_words) # " ".join() joins array elements with ' ' between each one
