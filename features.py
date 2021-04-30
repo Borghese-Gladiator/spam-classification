@@ -55,7 +55,7 @@ class FeatureExtractor():
         x = []
 
         ## PREPROCESS TEXT
-        email = apply_preprocess_all(email)
+        # email = apply_preprocess_all(email) # omit preprocessing due to how long it takes
 
         x = np.append(x, self._compute_misspelled_words(email))
         x = np.append(x, self._compute_spam_phrases_count(email))
