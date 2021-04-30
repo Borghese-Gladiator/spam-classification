@@ -8,8 +8,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 from sklearn.metrics import confusion_matrix
-## custom script for text features
-from features import FeatureExtractor
 
 ## Disable CSV field limit to load long strings in spam_or_not_spam.csv - https://stackoverflow.com/questions/15063936/csv-error-field-larger-than-field-limit-131072
 maxInt = sys.maxsize
@@ -36,20 +34,27 @@ with open(data_file, 'r', encoding='Latin1') as f:
 print(headers)
 print(data.shape)
 print(data[:3])
-data_copy = data.copy()
 
-# TEXT PREPROCESSING
-from utils import apply_preprocess_all
-
-# data_copy[:, 0] = np.apply_along_axis(apply_preprocess_all, 0, data_copy)
-
-'''
 # FEATURE EXTRACTION
-for i in range(data):
-    x = feature_extractor.extract_features(data[i])
+from features import FeatureExtractor
+
+n_features = 3
+X = np.zeros((0,n_features))
+y = np.zeros(0,)
+feature_extractor = FeatureExtractor(debug=False)
+
+for i, datapoint in enumerate(data):
+    text_data = datapoint[0]
+    label = datapoint[-1] # 0 or 1 for spam
+    x = feature_extractor.extract_features(text_data)
+    if (len(x) != X.shape[1]):
+        print("Received feature vector of length {}. Expected feature vector of length {}.".format(len(x), X.shape[1]))
     X = np.append(X, np.reshape(x, (1, -1)), axis=0)
     y = np.append(y, label)
 
+print("Finished feature extraction")
+
+'''
 # TRAIN & EVALUATE CLASSIFIER
 print("---------------------- Decision Tree -------------------------")
 
