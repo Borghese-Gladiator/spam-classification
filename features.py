@@ -1,9 +1,10 @@
 import numpy as np
-import math
-from utils import spam_words_list
+import nltk
+from utils import spam_words_list, apply_preprocess_all
 
 class FeatureExtractor():
     def __init__(self, debug=True):
+        nltk.download('words')
         self.debug = debug
 
     def _compute_misspelled_words(self, email):
@@ -50,9 +51,12 @@ class FeatureExtractor():
         
         Make sure that x is a vector of length d matrix, where d is the number of features.
         
-        """        
+        """
         x = []
-        
+
+        ## PREPROCESS TEXT
+        email = apply_preprocess_all(email)
+
         x = np.append(x, self._compute_misspelled_words(email))
         x = np.append(x, self._compute_spam_phrases_count(email))
         x = np.append(x, self._compute_exclamation_point_count(email))
