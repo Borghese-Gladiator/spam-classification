@@ -2,8 +2,6 @@ import numpy as np
 import math
 from utils import spam_words_list
 
-print(spam_words_list)
-
 class FeatureExtractor():
     def __init__(self, debug=True):
         self.debug = debug
