@@ -36,29 +36,14 @@ with open(data_file, 'r', encoding='Latin1') as f:
 print(headers)
 print(data.shape)
 print(data[:3])
+data_copy = data.copy()
 
 # TEXT PREPROCESSING
+from utils import apply_preprocess_all
+
+# data_copy[:, 0] = np.apply_along_axis(apply_preprocess_all, 0, data_copy)
+
 '''
-## Tokenize
-def tokenize_into_words(text):
-	tokens = re.split('\W+', text)
-	return tokens
-
-## Normalize - Lemmatization (turn nouns/verbs into base dictionary forms)
-word_lemmatizer = WordNetLemmatizer()
-def lemmatization(tokenized_words):
-	lemmatized_text = [word_lemmatizer.lemmatize(word)for word in tokenized_words]
-	return ' '.join(lemmatized_text)
-
-## Filtering Noise - removing stop words
-
-def preprocessing_msgs(corpus):
-	categorized_text = pd.DataFrame(corpus)
-	categorized_text['non_punc_message_body']=categorized_text[0].apply(lambdamsg: remove_msg_punctuations(msg))
-	categorized_text['tokenized_msg_body']=categorized_text['non_punc_message_body'].apply(lambdamsg: tokenize_into_words(msg.lower()))
-	categorized_text['lemmatized_msg_words']=categorized_text['tokenized_msg_body'].apply(lambdaword_list:lemmatization(word_list))
-	return categorized_text['lemmatized_msg_words']
-
 # FEATURE EXTRACTION
 for i in range(data):
     x = feature_extractor.extract_features(data[i])
