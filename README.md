@@ -16,6 +16,8 @@ Found dataset on Kaggle: [https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dat
 - Label of 0 means message is NOT spam
 
 ## Preprocessing Text
+**CHOSE TO OMIT STEP** - preprocessing takes WAY too long
+
 Used NLTK for below preprocessing
 - tokenization
 - normalization (lemmatization)
