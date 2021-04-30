@@ -11,6 +11,7 @@ Final project for CS 328
 
 ## Gathering Data
 Found dataset on Kaggle: [https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset](https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset)
+- see archive.zip for data (spam_or_not_spam.csv is gitignored)
 - Label of 1 means message is spam
 - Label of 0 means message is NOT spam
 
