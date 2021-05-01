@@ -1,5 +1,5 @@
 # Spam Classification using Text Features
-Final project for CS 328
+Classification using SKLearn + NLTK for feature extraction
 
 ## Methodology
 - [Gathering Data](#gathering-data)
