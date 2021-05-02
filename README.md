@@ -7,7 +7,7 @@ Classification using SKLearn + NLTK for feature extraction
 3. [Preprocessing Text](#preprocessing-text)
 4. Load CSV into numpy array (& change max limit for csv reader)
 5. [Feature Extraction](#feature-extraction)
-6. [Trained & Evaluated Classifiers](#trained-evaluated-classifiers)
+6. [Trained & Evaluated Classifiers](##trained--evaluated-classifiers)
 8. Wrote best_classifier to /training_output/
 
 ## Gathering Data
