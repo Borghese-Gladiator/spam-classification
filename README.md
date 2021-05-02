@@ -2,12 +2,13 @@
 Classification using SKLearn + NLTK for feature extraction
 
 ## Methodology
-- [Gathering Data](#gathering-data)
-- [Preprocessing Text](#preprocessing-text)
-- [Scraping Known Spam Words List](#scraping-known-spam-words-list)
-- Extracted Features using FeatureExtractor from features.py
-- Trained & Evaluated classifiers
-- Wrote best_classifier to /training_output/
+1. [Gathering Data](#gathering-data)
+2. [Scraping Known Spam Words List](#scraping-known-spam-words-list)
+3. [Preprocessing Text](#preprocessing-text)
+4. Load CSV into numpy array (& change max limit for csv reader)
+5. [Feature Extraction](#feature-extraction)
+6. [Trained & Evaluated Classifiers](#trained-evaluated-classifiers)
+8. Wrote best_classifier to /training_output/
 
 ## Gathering Data
 Found dataset on Kaggle: [https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset](https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset)
@@ -25,11 +26,11 @@ Used NLTK for below preprocessing
 
 ## Scraping Known Spam Words List
 - Went to website & copied HTML from: [https://www.automational.com/spam-trigger-words-to-avoid/](https://www.automational.com/spam-trigger-words-to-avoid/)
-- Wrote Vanilla JS script ([see below](#Script Snippet)) to iterate over elements & get value of each
-- Logged whole object to console & saved array to Python script.
+- Wrote Vanilla JS script to iterate over elements & get value of each
+- Logged whole object to console & saved array to Python list in utils.py.
 
-JS script included below
-```
+JavaScript script included below
+```html
 <script>
   const result = []
   const ulElem = document.getElementById("BLAH");
@@ -43,6 +44,19 @@ JS script included below
   console.log(JSON.stringify(result))
 </script>
 ```
+
+## Feature Extraction
+- preprocessed text
+  - tokenized, normalized (lemmatization), removed stop words
+- Features Extracted (found with NLTK functions)
+  - count of misspelled words
+  - count of spam phrases based on scraped words
+  - count of exclamation points
+
+## Trained \& Evaluated Classifiers
+- For every model (Decision Tree, Gradient Boost, and Random Forest Classifier)
+  - ran 10-fold cross validation
+  - calculated total accuracy, precision, and recall
 
 ## Initial Plan (Submitted)
 - Gather dataset of spam and not spam
